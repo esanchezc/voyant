@@ -1,0 +1,23 @@
+{
+    "first_name": "Emanuel",
+    "last_name": "Sanchez",
+    "birth_year": "1990",
+    "plan_start_date": {
+        "day": 5,
+        "month": 12,
+        "year": 2024
+    },
+    "province": "Alberta",
+    "retired": "No",
+    "retirement_age": "65",
+    "pre_retirement_goal_amount": 50000,
+    "employment": {
+        "name": "ACME",
+        "salary": 50000,
+        "source": "Employed"
+    },
+    "insurance": {
+        "policy_name": "Life 100",
+        "insurance_type": "Employee"
+    }
+}
