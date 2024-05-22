@@ -65,21 +65,26 @@ describe('Voyant automation exercise', () => {
       // Validate Data in Dashboard
       // Client
       cy.get('a').contains('People').click()
-      cy.contains(client.first_name + ' ' + client.last_name).should('be.visible')
+      cy.get('#peopleSection').contains(client.first_name + ' ' + client.last_name).should('be.visible')
+      cy.get('#peopleSection').contains(client.birth_year).should('be.visible')
+      cy.get('#peopleSection > .account-content > .table > tbody > .account-table-row > .col-xs-4').should('not.be.empty')
       cy.addTestContext('| Create a Client using Add button  | PASSED | AddClient.png |')
       //Goal
       cy.get('a').contains('Goals').click()
-      cy.contains('$50,000').should('be.visible')
-      cy.contains('Pre-Retirement Goal').should('be.visible')
-      cy.addTestContext('| Add a Pre-Retirement Goal  | PASSED | AddGoal.png |')
+      cy.get('#goalsSection').contains(client.pre_retirement_goal_amount).should('be.visible')
+      cy.get('#goalsSection').contains('Pre-Retirement Goal').should('be.visible')
+      cy.get('.progress').should('be.visible')
+      cy.addTestContext('| Add a Pre-Retirement Goal | PASSED | AddGoal.png |')
       // Income
       cy.get('a').contains('Income').click()
-      cy.contains(client.employment.name).should('be.visible')
+      cy.get('#incomeSection').contains(client.employment.name).should('be.visible')
+      cy.get('#incomeSection').contains(client.employment.source).should('be.visible')
+      cy.get('#incomeSection').contains(client.employment.salary).should('be.visible')
       cy.addTestContext('| Add an Income  | PASSED | AddIncome.png |')
       // Insurance
       cy.get('a').contains('Insurance').click()
-      cy.contains(client.insurance.policy_name).should('be.visible')
-      cy.contains('Term Life').should('be.visible')
+      cy.get('#protectionSection').contains(client.insurance.policy_name).should('be.visible')
+      cy.get('#protectionSection').contains(client.insurance.type).should('be.visible')
       cy.addTestContext('| Add a Term Life Insurance  | PASSED | AddInsurance.png |')
       cy.screenshot('Dashboard')
       cy.addTestContext('| Validate Dashboard  | PASSED | Dashboard.png |')

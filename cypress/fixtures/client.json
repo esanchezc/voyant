@@ -10,14 +10,15 @@
     "province": "Alberta",
     "retired": "No",
     "retirement_age": "65",
-    "pre_retirement_goal_amount": 50000,
+    "pre_retirement_goal_amount": "$500,000",
     "employment": {
         "name": "ACME",
-        "salary": 50000,
+        "salary": "$50,000",
         "source": "Employed"
     },
     "insurance": {
         "policy_name": "Life 100",
-        "insurance_type": "Employee"
+        "insurance_type": "Employee",
+        "type": "Term Life"
     }
 }
