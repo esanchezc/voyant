@@ -22,7 +22,7 @@ describe('Voyant automation exercise', () => {
     cy.fixture('client.json').then((client) => {
       // Add Client
       cy.get('.add-button').click()
-      cy.wait(500)
+      cy.wait(100)
       cy.get('#newInputFirst').type(client.first_name);
       cy.get('#newInputLast').type(client.last_name);
       cy.get('#birthYear').type(client.birth_year);
@@ -38,7 +38,7 @@ describe('Voyant automation exercise', () => {
       cy.get('.add-button').click()
       cy.get('[data-test-model-type="goals"]').click()
       cy.get('button[data-test-goal-type="goal-pre-retirement"]').click()
-      cy.wait(500)
+      cy.wait(100)
       cy.get('#basicExpenseInputAmount').type(client.pre_retirement_goal_amount)
       cy.screenshot('AddGoal')
       cy.get('button').contains('Done').click()
@@ -46,7 +46,7 @@ describe('Voyant automation exercise', () => {
       cy.get('.add-button').click()
       cy.get('[data-test-model-type="income"]').click()
       cy.get('button[data-test-model-category="caEmployment"]').click()
-      cy.wait(500)
+      cy.wait(100)
       cy.get('#employmentInputName').type(client.employment.name)
       cy.get('#employmentInputEmploymentSource').select(client.employment.source)
       cy.get('#employmentInputSalary').type(client.employment.salary)
@@ -56,7 +56,7 @@ describe('Voyant automation exercise', () => {
       cy.get('.add-button').click()
       cy.get('[data-test-model-type="protection"]').click()
       cy.get('button[data-test-model-category="termLifeInsurance"]').click()
-      cy.wait(500)
+      cy.wait(100)
       cy.get('#termLifeName').type(client.insurance.policy_name)
       cy.get('#termLifeInputInsuranceType').type(client.insurance.insurance_type)
       cy.get('#termLifeInsuranceEmploymentId').select(client.employment.name)
@@ -70,18 +70,21 @@ describe('Voyant automation exercise', () => {
       cy.get('#peopleSection > .account-content > .table > tbody > .account-table-row > .col-xs-4').should('not.be.empty')
       cy.addTestContext('| Create a Client using Add button  | PASSED | AddClient.png |')
       //Goal
+      cy.get('a[data-test-accordion-header="goals"]').contains("0 of 1 goals met")
       cy.get('a').contains('Goals').click()
       cy.get('#goalsSection').contains(client.pre_retirement_goal_amount).should('be.visible')
       cy.get('#goalsSection').contains('Pre-Retirement Goal').should('be.visible')
       cy.get('.progress').should('be.visible')
       cy.addTestContext('| Add a Pre-Retirement Goal | PASSED | AddGoal.png |')
       // Income
+      cy.get('a[data-test-accordion-header="income"]').contains("1")
       cy.get('a').contains('Income').click()
       cy.get('#incomeSection').contains(client.employment.name).should('be.visible')
       cy.get('#incomeSection').contains(client.employment.source).should('be.visible')
       cy.get('#incomeSection').contains(client.employment.salary).should('be.visible')
       cy.addTestContext('| Add an Income  | PASSED | AddIncome.png |')
       // Insurance
+      cy.get('a[data-test-accordion-header="protection"]').contains("1")
       cy.get('a').contains('Insurance').click()
       cy.get('#protectionSection').contains(client.insurance.policy_name).should('be.visible')
       cy.get('#protectionSection').contains(client.insurance.type).should('be.visible')
